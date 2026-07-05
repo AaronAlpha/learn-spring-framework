@@ -1,11 +1,11 @@
 package com.springLearning.learn_spring_framework.game;
 
-public class SuperContraGame {
+public class SuperContraGame implements GamingConsole{
+    // we are implementing the interface "GamingConsole"
 
     public SuperContraGame(){
 
     }//
-
 
     //    actions of this game
     public void up(){

@@ -22,11 +22,21 @@ public class AppGamingBasicJava {
         // instead of: "MarioGame marioGame = new MarioGame();" (Tight Coupled)
 
 
+//
+//        var superContraGame = new SuperContraGame();
+//
+//        var gameRunner = new GameRunner(superContraGame); // new instance of a "GameRunner" class
+//        // (before) there is an error, because in the GameRunner class, it (GameRunner class) is Tightly Coupled to the MarioGame class
 
-        var superContraGame = new SuperContraGame();
 
-        var gameRunner = new GameRunner(superContraGame); // new instance of a "GameRunner" class
+//        var game = new MarioGame();
+        var game = new SuperContraGame();
+
+        var gameRunner = new GameRunner(game); // new instance of a "GameRunner" class
         // (before) there is an error, because in the GameRunner class, it (GameRunner class) is Tightly Coupled to the MarioGame class
+
+
+
 
 
         gameRunner.run(); // want to run the game
