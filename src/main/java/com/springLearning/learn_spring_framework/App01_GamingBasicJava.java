@@ -7,7 +7,7 @@ import com.springLearning.learn_spring_framework.game.PacmanGame;
 
 // is a basic class
 // want to create a gameRunner class instance and launch mario-game
-public class AppGamingBasicJava_Old {
+public class App01_GamingBasicJava {
 
     public static void main(String[] args){
 
