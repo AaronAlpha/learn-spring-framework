@@ -31,6 +31,11 @@ public class App02_HelloWorldSpring {
 
         System.out.println(variable); // printing out the above line
 
+        System.out.println( context.getBean("age") );
+        System.out.println( context.getBean("person") ); // Note: a toString method is automatically implemented when the printed out
+
+        System.out.println( context.getBean("address") );
+
     }// main
 
 
