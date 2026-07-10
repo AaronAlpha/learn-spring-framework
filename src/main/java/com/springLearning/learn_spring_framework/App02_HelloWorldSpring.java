@@ -34,7 +34,12 @@ public class App02_HelloWorldSpring {
         System.out.println( context.getBean("age") );
         System.out.println( context.getBean("person") ); // Note: a toString method is automatically implemented when the printed out
 
-        System.out.println( context.getBean("address") );
+        // System.out.println( context.getBean("address") );
+        System.out.println( context.getBean("addr") ); // retrieving info about the Bean val by passing the *name of the Bean* in .getBean(...)
+
+        // this is another way of attaining a Bean val -- by calling the class of a Bean-method ( eg  : public <Class> method_name() {}; )
+        System.out.println( context.getBean(Address.class) ); // retrieving info about the Bean val by passing the *type of the Bean* in .getBean(...) 
+
 
     }// main
 

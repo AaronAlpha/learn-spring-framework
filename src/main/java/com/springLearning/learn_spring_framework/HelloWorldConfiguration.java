@@ -67,7 +67,9 @@ public class HelloWorldConfiguration {
 
 
     // the custom class Address as a Spring Bean
-    @Bean
+    // to add a diff name to then bean, instead of the default name of the bean ("address" in this case) which is the name of the method,
+    // we add/pass a str-val to the Bean-annotator ( @Bean(name="") )
+    @Bean(name="addr")
     // Note: if the "@Bean" annotator is not included for a method def, upon doing "variable.getBean(<string val>)" to call the new method
     // the output will be errored: "Exception in thread "main" org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named <string val> available"
     // becoz we calling .getBean(...), expecting to find a bean, but we have no methods that have the @Bean annotator
