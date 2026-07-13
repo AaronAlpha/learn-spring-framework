@@ -1,9 +1,10 @@
 package com.springLearning.learn_spring_framework;
 
 // both the annotations of @Configuration and @Bean require the respective import statements
+import org.springframework.beans.factory.annotation.Qualifier; // required import to use the "@Qualifier" annotator
 import org.springframework.context.annotation.Bean; // used to indicate "that a method produces a bean to be managed by the Spring Container" - java hover-docs
 import org.springframework.context.annotation.Configuration; // used to indicate "that a class declares one or more @Bean methods and may be processed by the Spring container to generate bean definitions and service requests for those beans at runtime" - java hover-docs
-
+import org.springframework.context.annotation.Primary; // required import when calling the "@Primary" annotator on a specific Bean (class-method)
 
 
 // seeing if Spring can manage the object of a custom class
@@ -41,14 +42,14 @@ public class  HelloWorldConfiguration {
     @Bean
     public String name(){
         return "Bean with name of \"name\": Spring!";
-    }//
+    }// name
     // thus this method "produces" a bean to be managed by the Spring Container
 
 
     @Bean
     public Integer age(){
         return 21;
-    }//
+    }// age
 
 
     // when using a record (in place of an actual class definition)
@@ -67,7 +68,7 @@ public class  HelloWorldConfiguration {
         // finally we return a "Person" obj (called "person")
 
         // Note: the name "person" in the method name is diff and unrelated from the name "person" in the obj instantiation --> the both of them could be named diff
-    }
+    }// person
 
 
     // the custom class Address as a Spring Bean
@@ -77,6 +78,7 @@ public class  HelloWorldConfiguration {
     // Note: if the "@Bean" annotator is not included for a method def, upon doing "variable.getBean(<string val>)" to call the new method
     // the output will be errored: "Exception in thread "main" org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named <string val> available"
     // becoz we calling .getBean(...), expecting to find a bean, but we have no methods that have the @Bean annotator
+    @Primary // to solve the issue of retrieving info by class-type, but there exists multiple candidates of the same class-type
     public Address address(){
         var address = new Address("Vancouver", "Lucerne");
 
@@ -97,12 +99,17 @@ public class  HelloWorldConfiguration {
 
 
         return person;
-    }
+    }// person2_MethodCall
+
+
+
+
 
     @Bean(name="addr2")
     // Note: if the "@Bean" annotator is not included for a method def, upon doing "variable.getBean(<string val>)" to call the new method
     // the output will be errored: "Exception in thread "main" org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named <string val> available"
     // becoz we calling .getBean(...), expecting to find a bean, but we have no methods that have the @Bean annotator
+    @Qualifier("addr2_Qual") // used to specify other Beans of similar type (when being retrieved)
     public Address address2(){
         var address = new Address("Vancouver", "Berne");
 
@@ -110,10 +117,11 @@ public class  HelloWorldConfiguration {
 
     }// address-bean
 
+
     // creating a new "Person" - bean "person3" - by "passing params"
     @Bean
     public Person person3_Params(String name, int age, Address addr2) { // passing params, like "name", "address"
-        // Note!, we dont pass in "address" (which would be the name of the class-method, as seen above), but we instead pass-in the name of the bean,
+        // Note!, we don't pass in "address" (which would be the name of the class-method, as seen above), but we instead pass-in the name of the bean,
         // which we altered for the "address" class-method to be "addr"
 
         // thus, in this case (unlike the person2), we create passable params (name, age and addr) which refer to existing Beans in this .java file,
@@ -124,7 +132,29 @@ public class  HelloWorldConfiguration {
 
 
         return person;
-    }
+    }// person3_Params
+
+
+
+
+
+    @Bean
+    @Primary
+    public Person person4_Params(String name, int age, Address address) { // passing params, like "name", "address"
+        // Note!, we don't pass in "address" (which would be the name of the class-method, as seen above), but we instead pass-in the name of the bean,
+        // which we altered for the "address" class-method to be "addr"
+
+        // thus, in this case (unlike the person2), we create passable params (name, age and addr) which refer to existing Beans in this .java file,
+        // ensuring that the created params refer to the **name of the BEAN** not **name of the CLASS-METHOD**; if no Bean-name (param) is
+        // specified for a class-method, then the name of the method is the name of the Bean
+
+        var person = new Person(name, age, address);
+
+
+        return person;
+    }// person3_Params
+
+
 
 
 

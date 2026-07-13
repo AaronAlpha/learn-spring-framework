@@ -79,6 +79,17 @@ public class App02_HelloWorldSpring {
         // how to give preference?
         System.out.println( context.getBean(Address.class) ); // retrieving info about the Bean val by passing the *type of the Bean* in .getBean(...)
 
+        // whether auto-wiring of pre-existing Beans via param-passing, OR, fetching by Class with .getBean(<ClassName>.class) from a Spring Context;
+        // if there exists no dependency (param passed) of an existing Bean name, OR, are multiple matching Beans (candidates) of the same class-type,
+        // Spring throws an exception
+
+        // to solve this, we could make one of the candidates "Primary" (refer HelloWorldConfiguration.java file, and refer to the Bean of "addr" name)
+        // to demonstrate which is most imp
+
+        // the above line of retrieval by class-type prints: "Address[firstLine=Vancouver, city=Lucerne]" (the selected Bean to be @Primary)
+
+        System.out.println( context.getBean(Person.class) );
+
 
 
 
