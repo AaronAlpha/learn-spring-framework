@@ -3,6 +3,8 @@ package com.springLearning.learn_spring_framework;
 import com.springLearning.learn_spring_framework.game.GameRunner;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import java.util.Arrays; // needed to print out the Names of the Beans (functionally)
+
 public class App02_HelloWorldSpring {
 
     public static void main(String[] args){
@@ -32,7 +34,7 @@ public class App02_HelloWorldSpring {
         System.out.println(variable); // printing out the above line
 
         System.out.println( context.getBean("age") );
-        System.out.println( context.getBean("person") ); // Note: a toString method is automatically implemented when the printed out
+        System.out.println( context.getBean("person") ); // Note: a toString met hod is automatically implemented when the printed out
 
         // System.out.println( context.getBean("address") );
         System.out.println( context.getBean("addr") ); // retrieving info about the Bean val by passing the *name of the Bean* in .getBean(...)
@@ -46,7 +48,44 @@ public class App02_HelloWorldSpring {
 
         System.out.println( context.getBean("person3_Params") );
 
+
+
+
+
+        // to print out all the Beans in our Config-Class file (Q3)
+        // String[] list = context.getBeanDefinitionNames(); // gets the Names of all defined Beans ; Note: its of type "String[]"
+//
+//        for (int i = 0; i < list.length; i++){
+//            System.out.println(list[i]);
+//        }
+
+
+        // using System.out.println
+        // Arrays.stream(context.getBeanDefinitionNames()).forEach(System.out::println); // gets the Names of all defined Beans ; Note: its of type "String[]")
+        // the above statement is a functional way of printing out the contents of the return of the context.getBeanDefinitionNames() (which is type String[])
+        /* it is equivalent to the following piece of code
+
+        for (int i = 0; i < list.length; i++){
+            System.out.println(list[i]);
+        }
+
+         */
+        //
+
+
+
+
+        // Q4: figuring out what happens when there are multiple Beans of the same type when retrieving Bean def by type
+        // how to give preference?
+        System.out.println( context.getBean(Address.class) ); // retrieving info about the Bean val by passing the *type of the Bean* in .getBean(...)
+
+
+
+
+
+
+
     }// main
 
 
-}
+}// class
