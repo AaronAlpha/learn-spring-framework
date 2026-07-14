@@ -109,7 +109,7 @@ public class  HelloWorldConfiguration {
     // Note: if the "@Bean" annotator is not included for a method def, upon doing "variable.getBean(<string val>)" to call the new method
     // the output will be errored: "Exception in thread "main" org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named <string val> available"
     // becoz we calling .getBean(...), expecting to find a bean, but we have no methods that have the @Bean annotator
-    @Qualifier("addr2_Qual") // used to specify other Beans of similar type (when being retrieved)
+    @Qualifier("addr2_Qual") //
     public Address address2(){
         var address = new Address("Vancouver", "Berne");
 
@@ -153,6 +153,24 @@ public class  HelloWorldConfiguration {
 
         return person;
     }// person3_Params
+
+
+    @Bean
+    public Person person5_Qual(String name, int age, @Qualifier("addr2_Qual") Address address) { // passing params, like "name", "address"
+        // Note!, we don't pass in "address" (which would be the name of the class-method, as seen above), but we instead pass-in the name of the bean,
+        // which we altered for the "address" class-method to be "addr"
+
+        // thus, in this case (unlike the person2), we create passable params (name, age and addr) which refer to existing Beans in this .java file,
+        // ensuring that the created params refer to the **name of the BEAN** not **name of the CLASS-METHOD**; if no Bean-name (param) is
+        // specified for a class-method, then the name of the method is the name of the Bean
+
+        var person = new Person(name, age, address);
+
+
+        return person;
+    }// person3_Params
+
+
 
 
 

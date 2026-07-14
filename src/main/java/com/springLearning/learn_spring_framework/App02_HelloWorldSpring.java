@@ -91,6 +91,12 @@ public class App02_HelloWorldSpring {
         System.out.println( context.getBean(Person.class) );
 
 
+        // printing out the person5_Qual eg, that has passed in "@Qualifier("addr2_Qual") Address address" as the auto-wiring
+        System.out.println( context.getBean("person5_Qual") );
+
+
+
+
 
 
 
