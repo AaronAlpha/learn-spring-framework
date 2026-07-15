@@ -1,4 +1,4 @@
-package com.springLearning.learn_spring_framework;
+package com.springLearning.learn_spring_framework.helloworld;
 
 // both the annotations of @Configuration and @Bean require the respective import statements
 import org.springframework.beans.factory.annotation.Qualifier; // required import to use the "@Qualifier" annotator

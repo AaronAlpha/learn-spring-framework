@@ -3,6 +3,7 @@ package com.springLearning.learn_spring_framework;
 
 import com.springLearning.learn_spring_framework.game.GameRunner;
 import com.springLearning.learn_spring_framework.game.PacmanGame;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 // HAVE to create the respective class (if not already created), then IMPORT the related class thru the above line(s)
 
 // is a basic class
@@ -10,6 +11,8 @@ import com.springLearning.learn_spring_framework.game.PacmanGame;
 public class App01_GamingBasicJava {
 
     public static void main(String[] args){
+
+        // this code was the old code to demonstrate tightly-coupled and loosely-coupled
 
 //        var marioGame = new MarioGame(); // this definition (Loose Coupled)
         // instead of: "MarioGame marioGame = new MarioGame();" (Tight Coupled)
