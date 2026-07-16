@@ -17,11 +17,11 @@ public class App03_GamingSpringBeans {
             // from our springContext, we call a Bean of type "GamingConsole"
             // but also want to run the "GameRunner" class --> refer GameConfigurationClass
 
-            springContext.getBean(GameRunner.class).run(); // calling the run method, which was defined within the GameRunner class, from the Config class (where all the Spring Beans exist) 
+            springContext.getBean(GameRunner.class).run(); // calling the run method, which was defined within the GameRunner class, from the Config class (where all the Spring Beans exist)
 
         }
 
 
-    }
+    }// main
 
-}
+}// class
